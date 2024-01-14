@@ -34,25 +34,20 @@ void votecount(){
     printf(" Deer: %d\n",deerVote);
     printf(" Light: %d\n", lightVote);
 }
-void leadingcandid(){
-
-    if ( penVote > spoonVote && penVote > deerVote && penVote > lightVote )
-    {
-        printf("Leading Candidate is Pen with %d Votes\n",penVote);
-    }else if (spoonVote > penVote && spoonVote > deerVote && spoonVote > lightVote)
-    {
-        printf("Leading Candidate is Spoon with %d Votes\n",spoonVote);
-    }else if (deerVote > penVote && deerVote > spoonVote && deerVote > lightVote)
-    {
-        printf("Leading Candidate is Deer with %d Votes\n",deerVote);
-    }else if (lightVote > penVote && lightVote > spoonVote && lightVote > deerVote)
-    {
-        printf("Leading Candidate is Deer with %d Votes\n",deerVote);
-    }else{
+void leadingcandid() {
+    if (penVote > spoonVote && penVote > deerVote && penVote > lightVote) {
+        printf("Leading Candidate is Pen with %d Votes\n", penVote);
+    } else if (spoonVote > penVote && spoonVote > deerVote && spoonVote > lightVote) {
+        printf("Leading Candidate is Spoon with %d Votes\n", spoonVote);
+    } else if (deerVote > penVote && deerVote > spoonVote && deerVote > lightVote) {
+        printf("Leading Candidate is Deer with %d Votes\n", deerVote);
+    } else if (lightVote > penVote && lightVote > spoonVote && lightVote > deerVote) {
+        printf("Leading Candidate is Light with %d Votes\n", lightVote);
+    } else {
         printf("**No one leading**\n");
     }
-       
 }
+
 void voteexit()
 {
 
@@ -100,6 +95,5 @@ int main(){
 }
 
 //saikat
-
 
 
