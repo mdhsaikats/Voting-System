@@ -1,10 +1,7 @@
 #include<stdio.h>
 #include<string.h>
-
 int option = 0 ;
 int penVote = 0 , spoonVote = 0, deerVote = 0, lightVote = 0;
-int number = 0;
-
 void castvote(){
     int candidate;
     printf("Select you candidate : 1.pen 2.spoon 3.deer 4.light : ");
@@ -48,21 +45,74 @@ void leadingcandid() {
     }
 }
 
-void voteexit()
+void savevote()
 {
-
-    if ( number == 0)
+    FILE *file = fopen("votes.txt","w");
+    if(file==NULL)
     {
-         printf("**Exit**\n");
+        printf("Error opening the file.\n");
         return;
     }
+    fprintf(file, "Pen: %d\n", penVote);
+    fprintf(file, "Spoon: %d\n", spoonVote);
+    fprintf(file, "Deer: %d\n", deerVote);
+    fprintf(file, "Light: %d\n", lightVote);
+    fprintf(file, "____________");
+    fclose(file);
+    printf("Vote saved\n");
+}
 
+void loadvotes() {
+    FILE *file = fopen("votes.txt", "r");
+    if (file == NULL) {
+        printf("Error opening file for reading.\n");
+        return;
+    }
+    fscanf(file, "Pen: %d\n", &penVote);
+    fscanf(file, "Spoon: %d\n", &spoonVote);
+    fscanf(file, "Deer: %d\n", &deerVote);
+    fscanf(file, "Light: %d\n", &lightVote);
+    fclose(file);
+    printf("Votes loaded from votes.txt\n");
+}
 
+void deletevotes() {
+    if (remove("votes.txt") == 0) {
+        printf("Main vote list deleted successfully.\n");
+    } else {
+        printf("Error deleting votes.txt.\n");
+    }
+    penVote = 0;
+    spoonVote = 0;
+    deerVote = 0;
+    lightVote = 0;
+    printf("All vote counts reset.\n");
+}
+
+void securitykey()
+{
+    long long securitykey = 29112003;
+    long long key;
+    printf("Enter the security key: ");
+    scanf("%d", &key);
+    if (securitykey==key) {
+        deletevotes();
+    } else {
+        printf("Invalid Key\n");
+    }
+}
+
+void voteexit()
+{
+    savevote();
+    printf("**Exit**\n");
 }
 int main(){
+    loadvotes();
     while (1)
     {
-        printf("1.Cast the vote 2.Find vote count 3. Find leading candidate 4.Exit : ");
+        printf("1.Cast the vote \n2.Find vote count \n3.Find leading candidate \n4.Delete the main file\n5.Exit\n");
+        printf("Your Option:");
         scanf("%d",&option);
 
         switch (option)
@@ -80,18 +130,20 @@ int main(){
 
             break;
         case 4:
+        {
+            securitykey();
+            break;
+        }
+        case 5:
             voteexit();
-            return 0;                
-        
+            return 0;
         default:
             printf("**Error**");
             break;
         }
 
     }
-
     return 0;
-    
 }
 
 //saikat
