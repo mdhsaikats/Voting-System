@@ -91,8 +91,8 @@ void deletevotes() {
 
 void securitykey()
 {
-    long long securitykey =29112003;
-    long long key;
+    long long int securitykey =29112003;
+    long long int key;
     printf("Enter the security key: ");
     scanf("%d", &key);
     if (securitykey==key) {
